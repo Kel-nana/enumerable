@@ -131,7 +131,7 @@ Feel free to check the [issues page](../../issues/).
 
 - **Is this an Open Source Project?**
 
-  - Yes it is.
+  - Yes.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
