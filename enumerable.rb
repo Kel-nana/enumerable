@@ -25,49 +25,49 @@ module MyEnumerable
   end
 
   # Returns the maximum element(s) in the collection.
-  def max(num = nil, &)
+  def max(num = nil, &block)
     return nil if @list.empty?
 
     # If no block is given, use the default comparison.
     sorted_list = if block_given?
                     # If a block is given, use it for custom comparison.
-                    @list.sort(&)
+                    @list.sort(&block)
                   else
                     @list.sort
                   end
 
-    # If n is not specified or n is greater than the list size, return all elements.
+    # If num is not specified or num is greater than the list size, return all elements.
+    return sorted_list if num.nil? || num >= @list.size
+
+    # Otherwise, return the first num elements from the sorted list.
+    sorted_list.take(num)
+  end
+
+  def min(num = nil, &block)
+    return nil if @list.empty?
+
+    # If no block is given, use the default comparison.
+    sorted_list = if block_given?
+                    # If a block is given, use it for custom comparison.
+                    @list.sort(&block)
+                  else
+                    @list.sort
+                  end
+
+    # If num is not specified or num is greater than the list size, return all elements.
     return sorted_list if num.nil? || num >= @list.size
 
     # Otherwise, return the first n elements from the sorted list.
     sorted_list.take(num)
   end
 
-  def min(num = nil, &)
-    return nil if @list.empty?
-
-    # If no block is given, use the default comparison.
-    sorted_list = if block_given?
-                    # If a block is given, use it for custom comparison.
-                    @list.sort(&)
-                  else
-                    @list.sort
-                  end
-
-    # If n is not specified or n is greater than the list size, return all elements.
-    return sorted_list if num.nil? || num >= @list.size
-
-    # Otherwise, return the first n elements from the sorted list.
-    sorted_list.take(num)
-  end
-
-  def sort(&)
+  def sort(&block)
     return [] if @list.empty?
 
     # If no block is given, use the default comparison.
     if block_given?
       # If a block is given, use it for custom comparison.
-      @list.sort(&)
+      @list.sort(&block)
     else
       @list.sort
     end
